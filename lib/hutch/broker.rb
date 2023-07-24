@@ -97,7 +97,7 @@ module Hutch
         connection.start
       end
 
-      logger.info "connected to RabbitMQ at #{connection_params[:host]} as #{connection_params[:username]}"
+      logger.info "connected to RabbitMQ at #{connection.host} as #{connection_params[:username]}"
       connection
     end
 
@@ -285,6 +285,8 @@ module Hutch
 
       {}.tap do |params|
         params[:host]               = @config[:mq_host]
+        params[:hosts]              = @config[:mq_hosts].split(';') if @config[:mq_hosts]
+        params[:addresses]          = @config[:mq_addresses].split(';') if @config[:mq_addresses]
         params[:port]               = @config[:mq_port]
         params[:vhost]              = @config[:mq_vhost].presence || Hutch::Adapter::DEFAULT_VHOST
         params[:auth_mechanism]     = @config[:mq_auth_mechanism]

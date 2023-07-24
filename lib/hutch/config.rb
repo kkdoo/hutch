@@ -46,6 +46,12 @@ module Hutch
     # RabbitMQ hostname
     string_setting :mq_host, '127.0.0.1'
 
+    # RabbitMQ list of hostname or IP addresses to select hostname from when connecting
+    string_setting :mq_hosts, nil
+
+    # RabbitMQ list of addresses to select hostname and port from when connecting
+    string_setting :mq_addresses, nil
+
     # RabbitMQ Exchange to use for publishing
     string_setting :mq_exchange, 'hutch'
 

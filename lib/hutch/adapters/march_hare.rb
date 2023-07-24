@@ -36,6 +36,10 @@ module Hutch
       def self.new_exchange(ch, exchange_type, exchange_name, exchange_options)
         MarchHare::Exchange.new(ch, exchange_name, exchange_options.merge(type: exchange_type))
       end
+
+      def host
+        @connection.host
+      end
     end
   end
 end

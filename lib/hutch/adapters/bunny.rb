@@ -32,6 +32,10 @@ module Hutch
       def self.new_exchange(ch, exchange_type, exchange_name, exchange_options)
         Bunny::Exchange.new(ch, exchange_type, exchange_name, exchange_options)
       end
+
+      def host
+        @connection.host
+      end
     end
   end
 end

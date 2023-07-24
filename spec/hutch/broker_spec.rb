@@ -116,11 +116,13 @@ describe Hutch::Broker do
 
       context 'which specifies the amqps scheme' do
         before { config[:uri] = 'amqps://guest:guest@127.0.0.1/' }
+        let(:adapter) { instance_double('Hutch::Adapter', start: nil) }
 
         it 'utilises TLS' do
+          expect(adapter).to receive(:host).and_return('127.0.0.1')
           expect(Hutch::Adapter).to receive(:new).with(
             hash_including(tls: true)
-          ).and_return(instance_double('Hutch::Adapter', start: nil))
+          ).and_return(adapter)
 
           broker.open_connection
         end

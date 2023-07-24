@@ -112,6 +112,14 @@ module Hutch
           Hutch::Config.mq_host = host
         end
 
+        opts.on('--mq-hosts HOSTS', 'Set the RabbitMQ host') do |hosts|
+          Hutch::Config.mq_hosts = hosts
+        end
+
+        opts.on('--mq-addresses ADDRESSES', 'Set the RabbitMQ addresses') do |addresses|
+          Hutch::Config.mq_addresses = addresses
+        end
+
         opts.on('--mq-port PORT', 'Set the RabbitMQ port') do |port|
           Hutch::Config.mq_port = port
         end
