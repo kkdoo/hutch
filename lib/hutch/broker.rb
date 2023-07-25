@@ -284,9 +284,13 @@ module Hutch
       parse_uri
 
       {}.tap do |params|
-        params[:host]               = @config[:mq_host]
-        params[:hosts]              = @config[:mq_hosts].split(';') if @config[:mq_hosts]
-        params[:addresses]          = @config[:mq_addresses].split(';') if @config[:mq_addresses]
+        if @config[:mq_hosts]
+          params[:hosts]            = @config[:mq_hosts].split(';')
+        elsif @config[:mq_addresses]
+          params[:addresses]        = @config[:mq_addresses].split(';')
+        else
+          params[:host]             = @config[:mq_host]
+        end
         params[:port]               = @config[:mq_port]
         params[:vhost]              = @config[:mq_vhost].presence || Hutch::Adapter::DEFAULT_VHOST
         params[:auth_mechanism]     = @config[:mq_auth_mechanism]
